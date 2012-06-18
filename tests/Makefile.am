@@ -15,7 +15,8 @@ noinst_PROGRAMS = test_pair_inproc \
                   test_connect_resolve \
                   test_last_endpoint \
                   test_term_endpoint \
-                  test_monitor
+                  test_monitor \
+                  test_router_behavior
 
 if !ON_MINGW
 noinst_PROGRAMS += test_shutdown_stress \
@@ -37,6 +38,7 @@ test_connect_resolve_SOURCES = test_connect_resolve.cpp
 test_last_endpoint_SOURCES = test_last_endpoint.cpp
 test_term_endpoint_SOURCES = test_term_endpoint.cpp
 test_monitor_SOURCES = test_monitor.cpp
+test_router_behavior_SOURCES = test_router_behavior.cpp
 
 if !ON_MINGW
 test_shutdown_stress_SOURCES = test_shutdown_stress.cpp
