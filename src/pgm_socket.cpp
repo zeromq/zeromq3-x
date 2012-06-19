@@ -85,12 +85,12 @@ int zmq::pgm_socket_t::init_address (const char *network_,
     memcpy (network, network_, port_delim - network_);
 
     pgm_error_t *pgm_error = NULL;
-    struct pgm_addrinfo_t hints, *res = NULL;
+    struct pgm_addrinfo_t hints;
     sa_family_t sa_family;
 
     memset (&hints, 0, sizeof (hints));
     hints.ai_family = AF_UNSPEC;
-    if (!pgm_getaddrinfo (network, NULL, &res, &pgm_error)) {
+    if (!pgm_getaddrinfo (network, NULL, addr, &pgm_error)) {
 
         //  Invalid parameters don't set pgm_error_t.
         zmq_assert (pgm_error != NULL);
