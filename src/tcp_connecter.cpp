@@ -240,7 +240,7 @@ int zmq::tcp_connecter_t::open ()
 
 zmq::fd_t zmq::tcp_connecter_t::connect (bool *is_interrupted)
 {
-    is_interrupted = false;
+    *is_interrupted = false;
     //  Async connect have finished. Check whether an error occured.
     int err = 0;
 #if defined ZMQ_HAVE_HPUX
