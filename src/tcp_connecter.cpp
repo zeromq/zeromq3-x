@@ -95,7 +95,12 @@ void zmq::tcp_connecter_t::in_event ()
 
 void zmq::tcp_connecter_t::out_event ()
 {
-    fd_t fd = connect ();
+    bool is_interruped = false;
+    fd_t fd = connect(&is_interruped);
+    if (is_interruped)
+    {
+        return;
+    }
     rm_fd (handle);
     handle_valid = false;
 
@@ -233,8 +238,9 @@ int zmq::tcp_connecter_t::open ()
     return -1;
 }
 
-zmq::fd_t zmq::tcp_connecter_t::connect ()
+zmq::fd_t zmq::tcp_connecter_t::connect (bool *is_interrupted)
 {
+    *is_interrupted = false;
     //  Async connect have finished. Check whether an error occured.
     int err = 0;
 #if defined ZMQ_HAVE_HPUX
@@ -264,6 +270,11 @@ zmq::fd_t zmq::tcp_connecter_t::connect ()
         err = errno;
     if (err != 0) {
         errno = err;
+        if (errno == EINTR)
+        {
+            *is_interrupted = true;
+            return s;
+        }
         errno_assert (errno == ECONNREFUSED || errno == ECONNRESET ||
             errno == ETIMEDOUT || errno == EHOSTUNREACH ||
             errno == ENETUNREACH || errno == ENETDOWN);

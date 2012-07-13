@@ -80,7 +80,7 @@ namespace zmq
 
         //  Get the file descriptor of newly created connection. Returns
         //  retired_fd if the connection was unsuccessfull.
-        fd_t connect ();
+        fd_t connect (bool *is_interrupted);
 
         //  Address to connect to. Owned by session_base_t.
         const address_t *addr;
