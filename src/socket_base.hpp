@@ -102,6 +102,7 @@ namespace zmq
         void unlock();
 
         void monitor_event (int event_, ...);
+		void monitor_event (int event_, va_list args);
 
     protected:
 
