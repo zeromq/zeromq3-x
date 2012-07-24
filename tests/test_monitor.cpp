@@ -35,39 +35,39 @@ void socket_monitor (void *s, int event_, zmq_event_data_t *data_)
     // listener specific
     case ZMQ_EVENT_LISTENING:
         assert (data_->listening.fd > 0);
-        assert (memcmp (data_->listening.addr, addr, 22));
+        assert (strcmp(addr, data_->listening.addr) == 0);
         events |= ZMQ_EVENT_LISTENING;
         break;
     case ZMQ_EVENT_ACCEPTED:
         assert (data_->accepted.fd > 0);
-        assert (memcmp (data_->accepted.addr, addr, 22));
+        assert (strcmp(addr, data_->accepted.addr) == 0);
         events |= ZMQ_EVENT_ACCEPTED;
         break;
     // connecter specific
     case ZMQ_EVENT_CONNECTED:
         assert (data_->connected.fd > 0);
-        assert (memcmp (data_->connected.addr, addr, 22));
+        assert (strcmp(addr, data_->connected.addr) == 0);
         events |= ZMQ_EVENT_CONNECTED;
         break;
     case ZMQ_EVENT_CONNECT_DELAYED:
         assert (data_->connect_delayed.err != 0);
-        assert (memcmp (data_->connect_delayed.addr, addr, 22));
+        assert (strcmp(addr, data_->connect_delayed.addr) == 0);
         events |= ZMQ_EVENT_CONNECT_DELAYED;
         break;
     // generic - either end of the socket
     case ZMQ_EVENT_CLOSE_FAILED:
         assert (data_->close_failed.err != 0);
-        assert (memcmp (data_->close_failed.addr, addr, 22));
+        assert (strcmp(addr, data_->close_failed.addr) == 0);
         events |= ZMQ_EVENT_CLOSE_FAILED;
         break;
     case ZMQ_EVENT_CLOSED:
         assert (data_->closed.fd != 0);
-        assert (memcmp (data_->closed.addr, addr, 22));
+        assert (strcmp(addr, data_->closed.addr) == 0);
         events |= ZMQ_EVENT_CLOSED;
         break;
     case ZMQ_EVENT_DISCONNECTED:
         assert (data_->disconnected.fd != 0);
-        assert (memcmp (data_->disconnected.addr, addr, 22));
+        assert (strcmp(addr, data_->disconnected.addr) == 0);
         events |= ZMQ_EVENT_DISCONNECTED;
         break;
     default:
