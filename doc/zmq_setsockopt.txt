@@ -431,6 +431,20 @@ Default value:: no filters (allow from all)
 Applicable socket types:: all listening sockets, when using TCP transports.
 
 
+ZMQ_PROTOCOL: Specify the wire protocol version to use
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ZeroMQ 3.x extended the pub-sub protocol to support subscription forwarding,
+which isn't compatible with 2.x pub-sub semantics. The 'ZMQ_PROTOCOL' option
+allows for specifying the protocol version to use. A value of `1` designates
+backwards compatibility with existing 2.x pub-sub components in an existing
+topology.
+
+[horizontal]
+Option value type:: int
+Option value unit:: >0
+Default value:: 0 (with subscription forwarding)
+Applicable socket types:: all (only respected by ZMQ_PUB and ZMQ_SUB)
+
 RETURN VALUE
 ------------
 The _zmq_setsockopt()_ function shall return zero if successful. Otherwise it
