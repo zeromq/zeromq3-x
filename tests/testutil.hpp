@@ -25,6 +25,13 @@
 #include <assert.h>
 #include <string.h>
 
+#if !defined ZMQ_HAVE_WINDOWS
+#include <unistd.h>
+#include <pthread.h>
+#else
+#include "../src/windows.hpp"
+#endif
+
 #include "../include/zmq.h"
 
 inline void bounce (void *sb, void *sc)
