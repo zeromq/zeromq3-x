@@ -55,8 +55,11 @@ int main (int argc, char *argv [])
     assert (ctx);
     void *pub = zmq_socket (ctx, ZMQ_PUB);
     assert (pub);
+    int invalid_protocol = 2;
     int protocol = 1;
-    int rc = zmq_setsockopt (pub, ZMQ_PROTOCOL, &protocol, sizeof (protocol));
+    int rc = zmq_setsockopt (pub, ZMQ_PROTOCOL, &invalid_protocol, sizeof (invalid_protocol));
+    assert (rc == -1);
+    rc = zmq_setsockopt (pub, ZMQ_PROTOCOL, &protocol, sizeof (protocol));
     assert (rc == 0);
     rc = zmq_bind (pub, "tcp://127.0.0.1:5560");
     assert (rc == 0);

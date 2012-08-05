@@ -441,7 +441,7 @@ topology.
 
 [horizontal]
 Option value type:: int
-Option value unit:: >0
+Option value unit:: 0,1
 Default value:: 0 (with subscription forwarding)
 Applicable socket types:: all (only respected by ZMQ_PUB and ZMQ_SUB)
 
