@@ -121,6 +121,9 @@ namespace zmq
         int tcp_keepalive_idle;
         int tcp_keepalive_intvl;
 
+        //  Version of wire protocol to use.
+        int protocol;
+
         // TCP accept() filters
         typedef std::vector <tcp_address_mask_t> tcp_accept_filters_t;
         tcp_accept_filters_t tcp_accept_filters;

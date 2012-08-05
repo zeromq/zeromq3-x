@@ -53,6 +53,7 @@ zmq::options_t::options_t () :
     tcp_keepalive_cnt (-1),
     tcp_keepalive_idle (-1),
     tcp_keepalive_intvl (-1),
+    protocol (0),
     socket_id (0)
 {
 }
@@ -313,6 +314,21 @@ int zmq::options_t::setsockopt (int option_, const void *optval_,
                 return 0;
             }
         }
+
+    case ZMQ_PROTOCOL:
+        {
+            if (optvallen_ != sizeof (int)) {
+                errno = EINVAL;
+                return -1;
+            }
+            int val = *((int*) optval_);
+            if (val < 0 || val > 1) {
+                errno = EINVAL;
+                return -1;
+            }
+            protocol = val;
+            return 0;
+        }
     }
     errno = EINVAL;
     return -1;
@@ -528,6 +544,15 @@ int zmq::options_t::getsockopt (int option_, void *optval_, size_t *optvallen_)
         }
         memcpy (optval_, last_endpoint.c_str(), last_endpoint.size()+1);
         *optvallen_ = last_endpoint.size()+1;
+        return 0;
+
+    case ZMQ_PROTOCOL:
+        if (*optvallen_ < sizeof (int)) {
+            errno = EINVAL;
+            return -1;
+        }
+        *((int*) optval_) = protocol;
+        *optvallen_ = sizeof (int);
         return 0;
     }
 

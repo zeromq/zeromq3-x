@@ -455,6 +455,20 @@ Option value unit:: -1,>0
 Default value:: -1 (leave to OS default)
 Applicable socket types:: all, when using TCP transports.
 
+ZMQ_PROTOCOL: Wire protocol version in use
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Retrieve the wire protocol version used by this socket (pipe actually). A value
+of `1` designates backwards compatibility with existing 2.x pub-sub components
+in an existing topology. A value of `0` means subscription forwarding is
+enabled for pub-sub pairs.
+
+[horizontal]
+Option value type:: int
+Option value unit:: 0,1
+Default value:: 0 (with subscription forwarding)
+Applicable socket types:: all (only respected by ZMQ_PUB and ZMQ_SUB)
+
 RETURN VALUE
 ------------
 The _zmq_getsockopt()_ function shall return zero if successful. Otherwise it
