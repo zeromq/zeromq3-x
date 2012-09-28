@@ -131,7 +131,8 @@ void zmq::stream_engine_t::unplug ()
     plugged = false;
 
     //  Cancel all fd subscriptions.
-    rm_fd (handle);
+    if (!input_error)
+        rm_fd (handle);
 
     //  Disconnect from I/O threads poller object.
     io_object_t::unplug ();
@@ -197,7 +198,7 @@ void zmq::stream_engine_t::in_event ()
     if (disconnection) {
         input_error = true;
         if (decoder.stalled ())
-            reset_pollin (handle);
+            rm_fd (handle);
         else
             error ();
     }
