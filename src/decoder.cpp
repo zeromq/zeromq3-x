@@ -59,7 +59,7 @@ void zmq::decoder_t::set_session (session_base_t *session_)
 
 bool zmq::decoder_t::stalled () const
 {
-    return next == &decoder_t::message_ready;
+    return to_read == 0;
 }
 
 bool zmq::decoder_t::one_byte_size_ready ()
