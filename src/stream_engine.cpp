@@ -190,15 +190,15 @@ void zmq::stream_engine_t::in_event ()
     //  Flush all messages the decoder may have produced.
     session->flush ();
 
-    //  Input error has occurred. If the last decoded
-    //  message has already been accepted, we terminate
-    //  the engine immediately. Otherwise, we stop
-    //  waiting for input events and postpone the termination
-    //  until after the session has accepted the message.
+    //  An input error has occurred. If the last decoded message
+    //  has already been accepted, we terminate the engine immediately.
+    //  Otherwise, we stop waiting for socket events and postpone
+    //  the termination until after the message is accepted.
     if (disconnection) {
-        input_error = true;
-        if (decoder.stalled ())
+        if (decoder.stalled ()) {
             rm_fd (handle);
+            input_error = true;
+        }
         else
             error ();
     }
