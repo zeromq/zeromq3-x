@@ -47,6 +47,9 @@ zmq::ctx_t::ctx_t () :
     max_sockets (ZMQ_MAX_SOCKETS_DFLT),
     io_thread_count (ZMQ_IO_THREADS_DFLT)
 {
+#ifdef HAVE_FORK
+    pid = getpid();
+#endif
 }
 
 bool zmq::ctx_t::check_tag ()
@@ -87,6 +90,19 @@ int zmq::ctx_t::terminate ()
     slot_sync.lock ();
     if (!starting) {
 
+#ifdef HAVE_FORK
+        if (pid != getpid())
+        {
+            // we are a forked child process. Close all file descriptors
+            // inherited from the parent.
+            for (sockets_t::size_type i = 0; i != sockets.size (); i++)
+            {
+                sockets[i]->get_mailbox()->forked();
+            }
+
+            term_mailbox.forked();
+        }
+#endif
         //  Check whether termination was already underway, but interrupted and now
         //  restarted.
         bool restarted = terminating;

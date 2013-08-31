@@ -32,6 +32,10 @@ zmq::reaper_t::reaper_t (class ctx_t *ctx_, uint32_t tid_) :
 
     mailbox_handle = poller->add_fd (mailbox.get_fd (), this);
     poller->set_pollin (mailbox_handle);
+
+#ifdef HAVE_FORK
+    pid = getpid();
+#endif
 }
 
 zmq::reaper_t::~reaper_t ()
@@ -58,6 +62,13 @@ void zmq::reaper_t::stop ()
 void zmq::reaper_t::in_event ()
 {
     while (true) {
+#ifdef HAVE_FORK
+        if (unlikely(pid != getpid()))
+        {
+            //printf("zmq::reaper_t::in_event return in child process %d\n", (int)getpid());
+            return;
+        }
+#endif
 
         //  Get the next command. If there is none, exit.
         command_t cmd;
