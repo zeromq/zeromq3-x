@@ -27,6 +27,7 @@
 #if defined ZMQ_USE_KQUEUE
 
 #include <vector>
+#include <unistd.h>
 
 #include "fd.hpp"
 #include "thread.hpp"
@@ -96,6 +97,11 @@ namespace zmq
 
         kqueue_t (const kqueue_t&);
         const kqueue_t &operator = (const kqueue_t&);
+
+#ifdef HAVE_FORK
+        // the process that created this context. Used to detect forking.
+        pid_t pid;
+#endif
     };
 
     typedef kqueue_t poller_t;
