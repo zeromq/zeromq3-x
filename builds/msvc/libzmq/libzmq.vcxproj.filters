@@ -41,6 +41,9 @@
     <ClCompile Include="..\..\..\src\err.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\errno.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\src\fq.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -107,7 +110,7 @@
     <ClCompile Include="..\..\..\src\poller_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\precompiled.cpp">
+    <ClCompile Include="..\..\..\src\proxy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\pub.cpp">
@@ -152,6 +155,9 @@
     <ClCompile Include="..\..\..\src\sub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\tcp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\src\tcp_address.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -167,6 +173,12 @@
     <ClCompile Include="..\..\..\src\trie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\v1_decoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\v1_encoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\src\xpub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -179,26 +191,8 @@
     <ClCompile Include="..\..\..\src\zmq_utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\tcp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\proxy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\v1_decoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\v1_encoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\zmq.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\zmq_utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\address.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -239,6 +233,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\err.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\errno.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\fd.hpp">
@@ -328,7 +325,7 @@
     <ClInclude Include="..\..\..\src\poller_base.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\precompiled.hpp">
+    <ClInclude Include="..\..\..\src\proxy.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\pub.hpp">
@@ -373,6 +370,9 @@
     <ClInclude Include="..\..\..\src\sub.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\tcp.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\src\tcp_address.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -386,6 +386,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\trie.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\v1_decoder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\v1_encoder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\v1_protocol.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\windows.hpp">
@@ -410,21 +419,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\yqueue.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\tcp.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\proxy.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\v1_protocol.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\v1_encoder.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\v1_decoder.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
